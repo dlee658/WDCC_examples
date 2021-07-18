@@ -4,16 +4,14 @@ import express from 'express';
 const app = express();
 const port = process.env.PORT || 3001;
 
-
 // Setup body-parser
 app.use(express.json());
 
 // Setup our routes.
-//import routes from './routes';
-//app.use('/', routes);
+//This is called router, when client send request by url, the url will be /api/states then something ;check routes/index.js; then check routes/api/index.js
+// All incoming requests will go to the router called "routes"
+import routes from './routes/index.js';
+app.use('/', routes);
 
-app.get('/',(req,res) => {
-    res.status(200).json("hello");
-})
 
-app.listen(port, ()=> console.log(`App server listening on port ${port}!`));
+app.listen(port, () => console.log(`App server listening on port ${port}!`));
